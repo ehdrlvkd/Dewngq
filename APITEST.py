@@ -30,11 +30,15 @@ req=requests.get(matchURL,headers=headers)
 
 if req.status_code == 200:
     data = req.json()
-    match_id = data['matches'][0]['matches'][0]
-    target_matchURL = f'https://api.nexon.co.kr/kart/v1.0/matches/{match_id}'
+    # match_id = data['matches'][0]['matches'][0]
+    match_id  = data['matches']
+    target_matchURL = 'https://api.nexon.co.kr/kart/v1.0/matches/03ce00090231e140'
     match_req = requests.get(target_matchURL,headers=headers)
-    # print(match_req.json())
-    print(match_req.headers)
+
+    data = match_req.json()
+    print(data['players'])
+    # # print(match_req.json())
+    # print(match_req.headers)
 
 else:
     print(req.status_code)
